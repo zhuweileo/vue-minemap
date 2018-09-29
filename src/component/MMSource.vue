@@ -9,13 +9,11 @@
     name: "MMSource",
     provide() {
       return {
-        map: this.map,
         sourceId: this.id,
       }
     },
     data(){
       return {
-        isSourceAdd: false,
       }
     },
     props: {
@@ -27,13 +25,20 @@
         type: Object,
         required: true,
       },
-      map: {
+      mapInstace: {
         type: Object,
-        required: true,
       },
     },
     mounted() {
-      this.addSource();
+      if(this.$parent.$options.name === 'MineMap'){
+        this.$parent.$on('map-load',(map) =>  {
+          this.map = map;
+          this.addSource();
+        })
+      } else {
+        this.map = this.mapInstace;
+        this.addSource();
+      }
     },
     beforeDestroy() {
       this.rmSource()
@@ -42,16 +47,16 @@
       addSource() {
         const {id, options, map} = this;
         if (map) {
+          // console.log('addsource')
+          if(map.getSource(id)) map.removeSource(id);
           map.addSource(id, options);
-          this.isSourceAdd = true;
-          this.$emit('load');
+          this.$emit('source-load',map);
         }
       },
       rmSource() {
         const {id, map} = this;
         if (map) {
           map.removeSource(id);
-          this.isSourceAdd = false;
         }
       },
     },
@@ -59,7 +64,6 @@
       options: {
         deep: true,
         handler() {
-          console.log('111111');
           this.rmSource();
           this.addSource();
         }

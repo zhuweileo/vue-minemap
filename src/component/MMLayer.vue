@@ -1,11 +1,10 @@
 <template>
-
 </template>
 
 <script>
   export default {
     name: "MMLayer",
-    inject: ['map', 'sourceId'],
+    inject: ['sourceId'],
     props: {
       id: {
         type: String,
@@ -32,9 +31,14 @@
         default: null,
       },
     },
+    data(){
+      return {
+      }
+    },
     mounted() {
-      this.$parent.$on('load', () => {
+      this.$parent.$on('source-load', (map) => {
         setTimeout(() => {
+          this.map = map;
           this.addLayer();
         },0)
       });
@@ -60,14 +64,14 @@
     methods: {
       addLayer() {
         const {map, id, layerOptions} = this;
-        // console.log(layerOptions);
         if (map) {
+          // console.log('addlayer')
           if (map.getLayer(id)) this.rmLayer();
           map.addLayer(layerOptions);
         }
       },
       rmLayer() {
-        const {map} = this
+        const {map} = this;
         if (map) {
           map.removeLayer(this.id);
         }
