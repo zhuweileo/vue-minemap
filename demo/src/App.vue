@@ -1,107 +1,15 @@
 <template>
   <div id="app">
-    <MineMap v-bind="mapProps">
-      <MMSource v-if="show" v-for="(layer,index) in layerList" :key="layer.sourceId" :id="layer.sourceId" :options="layer.sourceOp">
-        <MMLayer v-bind="layer.layerOp"></MMLayer>
-      </MMSource>
-    </MineMap>
-
-
-    <Vdrag v-model="layerList" class="layer-list" @end="onDragEnd">
-      <!--<ul class="layer-list">-->
-        <div
-                v-for="(layer,index) in layerList"
-                :key="layer.sourceId"
-                :style="{color: layer.layerOp.paint['circle-color']}"
-        >{{layer.sourceId}} <button @click="onClick(index)">X</button></div>
-      <!--</ul>-->
-    </Vdrag>
+    <demo1></demo1>
   </div>
 </template>
 
 <script>
-  import MMSource from '../../src/component/MMSource.vue'
-  import MMLayer from '../../src/component/MMLayer'
-  import MineMap from '../../src/component/MineMap'
-  import Vdrag from 'vuedraggable'
-
+  import demo1 from './move-layer/MoveLayer'
   export default {
-    name: "app",
-    data() {
-      return {
-        map: null,
-        isMapLoaded: false,
-        show: true,
-        mapProps:{
-          accessToken: 'e919a6f32ce242f5aec22652d9dc1fdb',
-          solution: '7185',
-          options:{
-            container: 'map',
-            style: `http://minedata.cn/service/solu/style/id/7185`,
-            center: [116.1866179, 39.992559],
-            zoom: 9,
-            minZoom: 3,
-            maxZoom: 17,
-          }
-        },
-        layerList:[
-          {
-            sourceId: '0',
-            sourceOp: {
-              type: 'geojson',
-              data: { type: 'Point', coordinates: [116.1866179, 39.992559], }
-            },
-            layerOp:{
-              id: '0',
-              type: 'circle',
-              paint:{'circle-radius':50,'circle-color':'red'}
-            }
-          },
-          {
-            sourceId: '1',
-            sourceOp: {
-              type: 'geojson',
-              data: { type: 'Point', coordinates: [116.1866179, 39.992559], }
-            },
-            layerOp:{
-              id: '1',
-              type: 'circle',
-              paint:{'circle-radius':35,'circle-color':'green'}
-            }
-          },
-          {
-            sourceId: '2',
-            sourceOp: {
-              type: 'geojson',
-              data: { type: 'Point', coordinates: [116.1866179, 39.992559], }
-            },
-            layerOp:{
-              id: '2',
-              type: 'circle',
-              paint:{'circle-radius':20,'circle-color':'blue'}
-            }
-          },
-        ],
-      }
-    },
-    mounted() {
-    },
+    name:'app',
     components: {
-      MMSource,
-      MMLayer,
-      MineMap,
-      Vdrag,
-    },
-    methods: {
-      onClick(index) {
-        this.layerList = this.layerList.filter((l,i) => i !== index);
-      },
-      onDragEnd(){
-        this.show = false;
-        this.$nextTick(() => {
-          this.show = true;
-        })
-      },
+      demo1
     }
   };
 </script>
@@ -113,27 +21,5 @@
 
   #app { height: 100%; position: relative; }
 
-  .layer-list{
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    list-style: none;
-    background: rgba(0,0,0,.5);
-    color: white;
-    width: 100px;
-    padding: 10px;
-  }
-  .layer-list>div{
-    display: flex;
-    justify-content: space-between;
-  }
-  .layer-list>div>button{
-    padding: 0.5em 1em;
-  }
-  .test-btn{
-    position: absolute;
-    top: 50px;
-    left: 50px;
-  }
 </style>
 
