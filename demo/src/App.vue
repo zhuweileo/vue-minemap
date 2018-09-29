@@ -1,13 +1,21 @@
 <template>
   <div id="app">
     <MineMap v-bind="mapProps">
-      <MMSource v-for="layer in layerList" :key="layer.sourceId" :id="layer.sourceId" :options="layer.sourceOp">
+      <MMSource v-if="show" v-for="(layer,index) in layerList" :key="layer.sourceId" :id="layer.sourceId" :options="layer.sourceOp">
         <MMLayer v-bind="layer.layerOp"></MMLayer>
       </MMSource>
     </MineMap>
-    <ul class="layer-list">
-      <li v-for="(layer,index) in layerList" :key="layer.sourceId">{{layer.sourceId}} <button @click="onClick(index)">X</button></li>
-    </ul>
+
+
+    <Vdrag v-model="layerList" class="layer-list" @end="onDragEnd">
+      <!--<ul class="layer-list">-->
+        <div
+                v-for="(layer,index) in layerList"
+                :key="layer.sourceId"
+                :style="{color: layer.layerOp.paint['circle-color']}"
+        >{{layer.sourceId}} <button @click="onClick(index)">X</button></div>
+      <!--</ul>-->
+    </Vdrag>
   </div>
 </template>
 
@@ -15,6 +23,7 @@
   import MMSource from '../../src/component/MMSource.vue'
   import MMLayer from '../../src/component/MMLayer'
   import MineMap from '../../src/component/MineMap'
+  import Vdrag from 'vuedraggable'
 
   export default {
     name: "app",
@@ -22,6 +31,7 @@
       return {
         map: null,
         isMapLoaded: false,
+        show: true,
         mapProps:{
           accessToken: 'e919a6f32ce242f5aec22652d9dc1fdb',
           solution: '7185',
@@ -44,7 +54,7 @@
             layerOp:{
               id: '0',
               type: 'circle',
-              paint:{'circle-radius':20,'circle-color':'red'}
+              paint:{'circle-radius':50,'circle-color':'red'}
             }
           },
           {
@@ -56,7 +66,7 @@
             layerOp:{
               id: '1',
               type: 'circle',
-              paint:{'circle-radius':15,'circle-color':'green'}
+              paint:{'circle-radius':35,'circle-color':'green'}
             }
           },
           {
@@ -68,10 +78,10 @@
             layerOp:{
               id: '2',
               type: 'circle',
-              paint:{'circle-radius':10,'circle-color':'blue'}
+              paint:{'circle-radius':20,'circle-color':'blue'}
             }
-          }
-        ]
+          },
+        ],
       }
     },
     mounted() {
@@ -80,10 +90,17 @@
       MMSource,
       MMLayer,
       MineMap,
+      Vdrag,
     },
     methods: {
       onClick(index) {
         this.layerList = this.layerList.filter((l,i) => i !== index);
+      },
+      onDragEnd(){
+        this.show = false;
+        this.$nextTick(() => {
+          this.show = true;
+        })
       },
     }
   };
@@ -106,12 +123,17 @@
     width: 100px;
     padding: 10px;
   }
-  .layer-list>li{
+  .layer-list>div{
     display: flex;
     justify-content: space-between;
   }
-  .layer-list>li>button{
+  .layer-list>div>button{
     padding: 0.5em 1em;
+  }
+  .test-btn{
+    position: absolute;
+    top: 50px;
+    left: 50px;
   }
 </style>
 
