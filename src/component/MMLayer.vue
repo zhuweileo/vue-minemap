@@ -4,7 +4,7 @@
 <script>
   export default {
     name: "MMLayer",
-    inject: ['sourceId'],
+    inject: ['sourceId','getMap'],
     props: {
       id: {
         type: String,
@@ -42,6 +42,10 @@
           this.addLayer();
         },0)
       });
+      if(this.$parent.isSourceLoaded){
+        this.map = this.getMap;
+        this.addLayer();
+      }
     },
     beforeDestroy() {
       this.rmLayer();

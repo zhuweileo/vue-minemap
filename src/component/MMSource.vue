@@ -7,6 +7,7 @@
 <script>
   export default {
     name: "MMSource",
+    inject:['getMap'],
     provide() {
       return {
         sourceId: this.id,
@@ -14,6 +15,7 @@
     },
     data(){
       return {
+        isSourceLoaded: false,
       }
     },
     props: {
@@ -34,7 +36,11 @@
         this.$parent.$on('map-load',(map) =>  {
           this.map = map;
           this.addSource();
-        })
+        });
+        if(this.$parent.isMapLoaded) {
+          this.map = this.getMap()
+          this.addSource();
+        }
       } else {
         this.map = this.mapInstace;
         this.addSource();
@@ -51,6 +57,7 @@
           if(map.getSource(id)) map.removeSource(id);
           map.addSource(id, options);
           this.$emit('source-load',map);
+          this.isSourceLoaded = true;
         }
       },
       rmSource() {

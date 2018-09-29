@@ -1,5 +1,5 @@
 <template>
-  <div :id="options.container" class="vue-minemap" style="height:100%">
+  <div :id="options.container" class="vue-minemap">
     <slot></slot>
   </div>
 </template>
@@ -30,6 +30,11 @@
         required: true,
       }
     },
+    data(){
+      return {
+        isMapLoaded: false,
+      }
+    },
     mounted() {
       this.initMap()
     },
@@ -43,9 +48,11 @@
         minemap.accessToken = accessToken;
         minemap.solution = solution;
         this.rmMap();
+        this.isMapLoaded = false;
         map = new minemap.Map(options);
         map.on('load', () => {
-          this.$emit('map-load', map)
+          this.$emit('map-load', map);
+          this.isMapLoaded = true;
         })
       },
       rmMap(){
@@ -64,5 +71,7 @@
 </script>
 
 <style scoped>
-
+  .vue-minemap{
+    height: 100%;
+  }
 </style>
