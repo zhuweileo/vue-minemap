@@ -58,6 +58,9 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devtool: '#eval-source-map',
+  devServer: {
+    // inline: false
+  },
   plugins: [
     new VueLoaderPlugin()
   ]
