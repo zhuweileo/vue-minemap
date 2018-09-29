@@ -5,16 +5,26 @@
 </template>
 
 <script>
-  let map = null;
+  let mapCenter = [];
 
-  export function getMap() {
-    return map
+  export function getMap(id) {
+    return mapCenter.filter(map => map.id === id)[0].mapInstace;
+  }
+
+  function rmFromMapCenter(id) {
+    let index = null;
+    mapCenter.forEach((map,i) => {
+      if(map.id === id){ index = i }
+    });
+    mapCenter.splice(index,1);
   }
 
   export default {
     name: "MineMap",
-    provide: {
-      getMap,
+    provide() {
+      return {
+        getMap: this.getMap,
+      }
     },
     props: {
       accessToken: {
@@ -30,7 +40,7 @@
         required: true,
       }
     },
-    data(){
+    data() {
       return {
         isMapLoaded: false,
       }
@@ -38,40 +48,50 @@
     mounted() {
       this.initMap()
     },
-    beforeDestroy(){
+    beforeDestroy() {
       this.rmMap()
     },
-    methods:{
-      initMap(){
+    methods: {
+      initMap() {
         const minemap = minemap || window.minemap;
         const {accessToken, solution, options} = this;
+
         minemap.accessToken = accessToken;
         minemap.solution = solution;
+
         this.rmMap();
         this.isMapLoaded = false;
-        map = new minemap.Map(options);
-        map.on('load', () => {
-          this.$emit('map-load', map);
+
+        this.map = new minemap.Map(options);
+        mapCenter.push({id: this.solution, mapInstace: this.map});
+
+        this.map.on('load', () => {
+          this.$emit('map-load', this.map);
           this.isMapLoaded = true;
         })
+
       },
-      rmMap(){
-        if(map){
-          map.remove();
-          map = null;
+      rmMap() {
+        if (this.map) {
+          this.map.remove();
+          this.map = null;
+          rmFromMapCenter(this.solution);
         }
+      },
+      getMap() {
+        return this.map
       }
     },
     watch: {
-      solution(){
+      solution() {
         this.initMap();
       }
     }
   }
 </script>
 
-<style scoped>
-  .vue-minemap{
+<style>
+  .vue-minemap {
     height: 100%;
   }
 </style>
