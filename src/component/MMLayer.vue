@@ -86,11 +86,7 @@
         deep: true,
         handler(val, old) {
           Object.keys(val).forEach((key) => {
-            if (!old.hasOwnProperty(key)) {
               this.map.setLayoutProperty(this.id, key, val[key])
-            } else if (val[key] !== old[key]) {
-              this.map.setLayoutProperty(this.id, key, val[key])
-            }
           });
         }
       },
@@ -98,11 +94,7 @@
         deep: true,
         handler(val, old) {
           Object.keys(val).forEach((key) => {
-            if (!old.hasOwnProperty(key)) {
-              this.map.setPaintProperty(this.id, key, val[key])
-            } else if (val[key] !== old[key]) {
-              this.map.setPaintProperty(this.id, key, val[key])
-            }
+            this.map.setPaintProperty(this.id, key, val[key])
           });
         }
       },
