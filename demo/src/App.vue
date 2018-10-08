@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <demo1></demo1>
+    <DemoList class="preview"/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-  import demo1 from './move-layer/MoveLayer'
+  import DemoList from './DemoList'
   export default {
     name:'app',
-    components: {
-      demo1
+    components:{
+      DemoList,
     }
   };
 </script>
@@ -21,5 +22,11 @@
 
   #app { height: 100%; position: relative; }
 
+  .preview{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 100;
+  }
 </style>
 

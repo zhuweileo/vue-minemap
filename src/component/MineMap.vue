@@ -63,7 +63,7 @@
         this.isMapLoaded = false;
 
         this.map = new minemap.Map(options);
-        mapCenter.push({id: this.solution, mapInstace: this.map});
+        mapCenter.push({id: this.options.container, mapInstace: this.map});
 
         this.map.on('load', () => {
           this.$emit('map-load', this.map);
