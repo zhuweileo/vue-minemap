@@ -1,378 +1,276 @@
 <p align="center"><img src="https://rawgit.com/mauricius/vue-draggable-resizable/master/docs/resources/logo.png" alt="logo"></p>
-<h1 align="center">ZwDragResize</h1>
+<h1 align="center">vue-minemap</h1>
 
 [![Latest Version on NPM](https://img.shields.io/npm/v/vue-draggable-resizable.svg?style=flat-square)](https://npmjs.com/package/vue-draggable-resizable)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![npm](https://img.shields.io/npm/dt/vue-draggable-resizable.svg?style=flat-square)](https://www.npmjs.com/package/vue-draggable-resizable)
 
-# Optimization of vue-draggable-resizable made by Maurizio
-[Maurizio](https://github.com/mauricius)<br>
-[vue-draggable-resizable](https://github.com/mauricius/vue-draggable-resizable)
 
+> minemap api的vue实现
 
+## 目录 
 
-> Vue2 Component for draggable and resizable elements.
+* [特性](#特性)
+* [demo](#demo)
+* [安装和基本使用](#安装和基本使用)
+  * [参数](#参数)
+  * [事件](#事件)
+* [参与贡献](#参与贡献)
+* [许可证](#许可证)
 
-## Table of Contents
+### 特性
 
-* [Features](#features)
-* [Demo](#demo)
-* [Install and basic usage](#install-and-basic-usage)
-  * [Props](#props)
-  * [Events](#events)
-* [Gotchas](#gotchas)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
+* 使用vue组件风格创建minemap图层
+* 减少minemap api调用，专注于业务逻辑
+* 使用简单，易上手
 
-### Features
-
-* No dependencies
-* Use draggable, resizable or both
-* Define handles for resizing
-* Restrict size and movement to parent element
-* Snap element to custom grid
-* Restrict drag to vertical or horizontal axis
+### 组件列表
+* MineMap
+* MMSource
+* MMLayer
 
 ### Demo
 
-[Demo](https://mauricius.github.io/vue-draggable-resizable/)
+[Demo](https://zhuweileo.github.io/vue-minemap/demo)
 
 ---
 
-## Install and basic usage
+## 安装 和 基本使用
 
 ```bash
-$ npm install --save zw-drag-resize
+$ npm install --save vue-minemap
 ```
 
-
-Register the component
-
-```js
-import Vue from 'vue'
-import ZwDragResize from 'zw-drag-resize'
-
-Vue.component('zw-drag-resize', ZwDragResize)
-```
-
-You may now use the component in your markup
+使用地图
 
 ```vue
-<template>
-  <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;">
-    <zw-drag-resize :w="100" :h="100" v-on:dragging="onDrag" v-on:resizing="onResize" :parent="true">
-      <p>Hello! I'm a flexible component. You can drag me around and you can resize me.<br>
-      X: {{ x }} / Y: {{ y }} - Width: {{ width }} / Height: {{ height }}</p>
-    </zw-drag-resize>
-  </div>
-</template>
-
+<tempalte>
+  <mine-map 
+          :accessToken= "'e919a6f32ce242f5aec22652d9dc1fdb'"
+          :solution= "'7185'"
+          :options= "{
+            container: 'map',
+            style: `http://minedata.cn/service/solu/style/id/7185`,
+            center: [116.1866179, 39.992559],
+            zoom: 9,
+            minZoom: 3,
+            maxZoom: 17,
+          }"
+  ></mine-map>
+</tempalte>
 <script>
-import ZwDragResize from 'zw-drag-resize'
-
-export default {
-  data: function () {
-    return {
-      width: 0,
-      height: 0,
-      x: 0,
-      y: 0
-    }
-  },
-  methods: {
-    onResize: function (e) {
-      const {x,y,width,height} = e
-      this.x = x
-      this.y = y
-      this.width = width
-      this.height = height
-    },
-    onDrag: function (e) {
-      const {x,y} = e
-      this.x = x
-      this.y = y
+  import {MineMap} from 'vue-minemap'
+  export default {
+    name:'app',
+  }
+</script>
+```
+添加source和layer
+```vue
+<tempalte>
+  <mine-map 
+          :accessToken= "'e919a6f32ce242f5aec22652d9dc1fdb'"
+          :solution= "'7185'"
+          :options= "{
+            container: 'map',
+            style: `http://minedata.cn/service/solu/style/id/7185`,
+            center: [116.1866179, 39.992559],
+            zoom: 9,
+            minZoom: 3,
+            maxZoom: 17,
+          }"
+  >
+      <MMSource :id="sourceId" :options="sourceOption">
+        <MMLayer 
+        :id="layerOption.id"
+        :type="layerOption.type"
+        :paint="layerOption.paint"
+        ></MMLayer>
+      </MMSource>
+  </mine-map>
+</tempalte>
+<script>
+  import {MineMap,MMSource,MMLayer} from 'vue-minemap'
+  export default {
+    name:'app',
+    data(){
+      return {
+        sourceId: 'test',
+        sourceOption:{
+           type: 'geojson',
+           data: {type: 'Point', coordinates: [116.1866179, 39.992559],}
+        },
+        layerOption:{
+           id: 'test',
+           type: 'circle',
+           paint: {'circle-radius': 10, 'circle-color': '#ccc'}
+        }
+      }
     }
   }
-}
 </script>
 ```
 
 ### Props
 
-#### active
-Type: `Boolean`<br>
-Required: `false`<br>
-Default: `false`
+#### MineMap
+##### accessToken
+Type: `string`<br>
+Required: `true`<br>
 
-Determines if the component should be active or not. The prop reacts to changes and also can be used with the `sync`[modifier](https://vuejs.org/v2/guide/components.html#sync-Modifier) to keep the state in sync with the parent.
+地图token值
 
 ```html
-<zw-drag-resize :active="true">
+<mine-map :accessToken="'xxxxxxxxxxxxxxxxxx'"/>
 ```
 
-#### draggable
-Type: `Boolean`<br>
-Required: `false`<br>
+##### solution
+Type: `string | number`<br>
+Required: `true`<br>
 Default: `true`
 
-Defines it the component should be draggable or not.
+地图solution
 
 ```html
-<zw-drag-resize :draggable="false">
+<mine-map :solution="'xxxx'"/>
 ```
 
-#### resizable
-Type: `Boolean`<br>
+##### options
+Type: `object`<br>
+Required: `true`<br>
+
+地图初始化参数，格式和minemap api兼容通用
+
+```html
+<mine-map :options="{
+   container: 'map',
+   style: `http://minedata.cn/service/solu/style/id/xxxx`,
+   center: [116.1866179, 39.992559],
+   zoom: 9,
+   minZoom: 3,
+   maxZoom: 17,
+}"/>
+```
+
+#### MMSource
+
+##### id
+Type: `string`<br>
+Required: `true`<br>
+
+source的id
+
+```html
+<m-m-source :id="'test'"/>
+```
+
+##### options
+Type: `object`<br>
+Required: `true`<br>
+
+source的初始化参数，格式和minemap api兼容通用
+
+```html
+<m-m-source :options="{
+  type:'geojson',
+  data: {}
+}"/>
+```
+
+##### mapInstance
+Type: `minemap.Map`<br>
 Required: `false`<br>
-Default: `true`
 
-Defines it the component should be resizable or not.
+minemap.Map 的实例化对象，当该组件不作为`MineMap`组件的子组件，而是单独使用时，需要传入
 
 ```html
-<zw-drag-resize :resizable="false">
+<m-m-source :mapInstance="map"/>
 ```
 
-#### w
-Type: `Number`<br>
+#### MMLayer
+
+##### id
+Type: `string`<br>
+Required: `true`<br>
+
+layer的id
+
+```html
+<m-m-layer :id="'test'"/>
+```
+
+##### type 
+Type: `string`<br>
+Required: `true`<br>
+
+图层类型。 `circle`,`line`,`fill`,`symbol`,`background`,`raster`,`extrusion`,`heatmap`,`hillshade`中的一种。
+
+```html
+<m-m-layer :type="'circle'"/>
+```
+
+##### sourceLayer 
+Type: `string`<br>
 Required: `false`<br>
-Default: `200`
+Default: `''`
 
-Define the width of the element,it is programmable.
+矢量数据时，需要传入
 
 ```html
-<zw-drag-resize :w="200">
+<m-m-layer :sourceLayer="'link'"/>
 ```
 
-#### h
-Type: `Number`<br>
+##### layout
+Type: `object`<br>
 Required: `false`<br>
-Default: `200`
+Default: `null`
 
-Define the height of the element,it is programmable.
+图层初始换参数中的 layout部分，格式和minemap api 兼容
 
 ```html
-<zw-drag-resize :h="200">
+<m-m-layer :layout="{
+  visibility: 'visible'
+}">
 ```
 
-#### minw
-Type: `Number`<br>
+##### paint 
+Type: `object`<br>
 Required: `false`<br>
-Default: `50`
+Default: `null`
 
-Define the minimal width of the element.
+图层初始换参数中的paint部分，格式和minemap api 兼容
 
 ```html
-<zw-drag-resize :minw="50">
+<m-m-layer :paint="{
+  'circle-color': '#000'
+}">
 ```
 
-#### minh
-Type: `Number`<br>
+##### filter
+Type: `array`<br>
 Required: `false`<br>
-Default: `50`
+Default: `null`
 
-Define the minimal height of the element.
-
-```html
-<zw-drag-resize :minh="50">
-```
-
-#### x
-Type: `Number`<br>
-Required: `false`<br>
-Default: `0`
-
-Define the x position of the element,it is programmable.
+图层初始换参数中的filter部分，格式和minemap api 兼容
 
 ```html
-<zw-drag-resize :x="0">
-```
-
-#### y
-Type: `Number`<br>
-Required: `false`<br>
-Default: `0`
-
-Define the y position of the element,it is programmable.
-
-```html
-<zw-drag-resize :y="0">
-```
-
-#### z
-Type: `Number|String`<br>
-Required: `false`<br>
-Default: `auto`
-
-Define the zIndex of the element.
-
-```html
-<zw-drag-resize :z="999">
-```
-
-#### handles
-Type: `Array`<br>
-Required: `false`<br>
-Default: `['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml']`
-
-Define the array of handles to restrict the element resizing:
-* `tl` - Top left
-* `tm` - Top middle
-* `tr` - Top right
-* `mr` - Middle right
-* `br` - Bottom right
-* `bm` - Bottom middle
-* `bl` - Bottom left
-* `ml` - Middle left
-
-```html
-<zw-drag-resize :handles="['tm','bm','ml','mr']">
-```
-
-#### axis
-Type: `String`<br>
-Required: `false`<br>
-Default: `both`
-
-Define the axis on which the element is draggable. Available values are `x`, `y` or `both`.
-
-```html
-<zw-drag-resize axis="x">
-```
-
-#### grid
-Type: `Array`<br>
-Required: `false`<br>
-Default: `[1,1]`
-
-Define the grid on which the element is snapped.
-
-```html
-<zw-drag-resize :grid="[1,1]">
-```
-
-#### parent
-Type: `Boolean`<br>
-Required: `false`<br>
-Default: `false`
-
-Restricts the movement and the dimensions of the element to the parent.
-
-```html
-<zw-drag-resize :parent="true">
-```
-
-#### dragHandle
-Type: `String`<br>
-Required: `false`
-
-Defines the selector that should be used to drag the component.
-
-```html
-<zw-drag-resize drag-handle=".drag">
-```
-
-#### dragCancel
-Type: `String`<br>
-Required: `false`
-
-Defines a selector that should be used to prevent drag initialization.
-
-```html
-<zw-drag-resize drag-cancel=".drag">
-```
-
-#### maximize
-Type: `Boolean`<br>
-Required: `false`<br>
-Default: `false`
-
-If set to `true` allows the component to fill its parent when double-clicked.
-
-```html
-<zw-drag-resize :maximize="true">
+<m-m-layer :filter="['==','name','leo']">
 ```
 
 ---
 
 ### Events
 
-#### activated
+#### MineMap
+##### map-load 
 
 Required: `false`<br>
-Parameters: `-`
+Parameters: `map实例`
 
-Called whenever the component gets clicked, in order to show handles.
-
-```html
-<zw-drag-resize @activated="onActivated">
-```
-
-#### deactivated
-
-Required: `false`<br>
-Parameters: `-`
-
-Called whenever the user clicks anywhere outside the component, in order to deactivate it.
+当地图加载完时调用
 
 ```html
-<zw-drag-resize @deactivated="onDeactivated">
-```
-
-#### resizing
-
-Required: `false`<br>
-Parameters: Object with properties below
-* `left` the X position of the element
-* `top` the Y position of the element
-* `width` the width of the element
-* `height` the height of the element
-
-Called whenever the component gets resized.
-
-```html
-<zw-drag-resize @resizing="onResizing">
-```
-
-#### resizestop
-
-Required: `false`<br>
-Parameters: Object with properties below
-* `left` the X position of the element
-* `top` the Y position of the element
-* `width` the width of the element
-* `height` the height of the element
-
-Called whenever the component stops getting resized.
-
-```html
-<zw-drag-resize @resizestop="onResizstop">
-```
-
-#### dragging
-
-Required: `false`<br>
-Parameters: Object with properties below
-* `left` the X position of the element
-* `top` the Y position of the element
-
-Called whenever the component gets dragged.
-
-```html
-<zw-drag-resize @dragging="onDragging">
-```
-
-#### dragstop
-
-Required: `false`<br>
-Parameters: Object with properties below
-* `left` the X position of the element
-* `top` the Y position of the element
-
-Called whenever the component stops getting dragged.
-
-```html
-<zw-drag-resize @dragstop="onDragstop">
+<mine-map @map-load="onLoad" />
 ```
 
 ### Gotchas
