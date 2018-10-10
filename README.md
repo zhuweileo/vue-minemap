@@ -1,4 +1,4 @@
-<p align="center"><img src="https://rawgit.com/mauricius/vue-draggable-resizable/master/docs/resources/logo.png" alt="logo"></p>
+<p align="center"><img src="./src/assets/logo.png" alt="logo"></p>
 <h1 align="center">vue-minemap</h1>
 
 [![Latest Version on NPM](https://img.shields.io/npm/v/vue-draggable-resizable.svg?style=flat-square)](https://npmjs.com/package/vue-draggable-resizable)
@@ -15,6 +15,7 @@
 * [安装和基本使用](#安装和基本使用)
   * [参数](#参数)
   * [事件](#事件)
+* [待完成工作](#待完成工作)
 * [参与贡献](#参与贡献)
 * [许可证](#许可证)
 
@@ -41,8 +42,25 @@
 $ npm install --save vue-minemap
 ```
 
-使用地图
+首先，引入minemap api
 
+index.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//minedata.cn/minemapapi/v1.4/minemap.css">
+    <title>demo</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="//minedata.cn/minemapapi/v1.4/minemap.js"></script>
+    <script src="./dist/build.js"></script>
+  </body>
+</html>
+```
+使用地图组件
 ```vue
 <tempalte>
   <mine-map 
@@ -69,11 +87,11 @@ $ npm install --save vue-minemap
 ```vue
 <tempalte>
   <mine-map 
-          :accessToken= "'e919a6f32ce242f5aec22652d9dc1fdb'"
+          :accessToken= "'xxxxxxxxxxxxxxxxxxxxxxxxx'"
           :solution= "'7185'"
           :options= "{
             container: 'map',
-            style: `http://minedata.cn/service/solu/style/id/7185`,
+            style: `http://minedata.cn/service/solu/style/id/xxxx`,
             center: [116.1866179, 39.992559],
             zoom: 9,
             minZoom: 3,
@@ -273,43 +291,32 @@ Parameters: `map实例`
 <mine-map @map-load="onLoad" />
 ```
 
-### Gotchas
+## 待完成工作
 
-Be careful to use appropriate values for `x`, `y`, `w`, `h`, `minh` and `minh` props when you want to restrict the component in its parent element.
+- [ ] 写单元测试
+- [ ] marker组件
+- [ ] popup组件
+- [ ] 路径规划组件
+- [ ] poi搜索组件
+- [ ] 城市搜索组件
 
-### Bonus
+## 参与贡献
 
-If `resizing`, `parent` and `maximize` props are `true` you can double-click on the element to make it fill the parent.
-
-## Roadmap
-
-- [x] Touch support (thanks @ojczeo)
-- [ ] Fix grid issues (#34, #58) - In progress
-- [ ] Implement Storybook - In progress
-- [ ] Aspect ratio on resizing (#26) - In progress
-- [ ] `maxWidth` and `maxHeight` props (#76) - In progress
-- [ ] Different approach with CSS styles (#73)
-- [ ] Watching props for changes (requires refactoring and possibly breaking changes)
-
-## Contributing
-
-Any contribution to the code or any part of the documentation and any idea and/or suggestion are very welcome.
+欢迎参与代码贡献
 
 ``` bash
-# serve with hot reload at localhost:8080
-npm run dev
 
-# distribution build
+# 打包组件代码
 npm run build
 
-# build the docs into gh-pages
-npm run docs
+# 运行demo
+npm run demo
 
-# run unit tests
+# 运行单元测试
 npm run test
 
 ```
 
-## License
+## 许可证
 
 [MIT license](LICENSE)
