@@ -46,7 +46,7 @@
           solution: '7185',
           options: {
             container: 'map',
-            style: `http://minedata.cn/service/solu/style/id/7185`,
+            style: `//minedata.cn/service/solu/style/id/7185`,
             center: [116.1866179, 39.992559],
             zoom: 9,
             minZoom: 3,
