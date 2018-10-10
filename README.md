@@ -1,11 +1,6 @@
 <p align="center"><img src="./src/assets/logo.png" alt="logo"></p>
 <h1 align="center">vue-minemap</h1>
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/vue-draggable-resizable.svg?style=flat-square)](https://npmjs.com/package/vue-draggable-resizable)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![npm](https://img.shields.io/npm/dt/vue-draggable-resizable.svg?style=flat-square)](https://www.npmjs.com/package/vue-draggable-resizable)
-
-
 > minemap api的vue实现
 
 ## 目录 
@@ -19,18 +14,18 @@
 * [参与贡献](#参与贡献)
 * [许可证](#许可证)
 
-### 特性
+## 特性
 
 * 使用vue组件风格创建minemap图层
 * 减少minemap api调用，专注于业务逻辑
 * 使用简单，易上手
 
-### 组件列表
+## 组件列表
 * MineMap
 * MMSource
 * MMLayer
 
-### Demo
+## Demo
 
 [Demo](https://zhuweileo.github.io/vue-minemap/demo)
 
@@ -47,23 +42,27 @@ $ npm install --save vue-minemap
 index.html
 ```html
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="//minedata.cn/minemapapi/v1.4/minemap.css">
-    <title>demo</title>
+    <title>vue-minemap-demo2</title>
   </head>
   <body>
     <div id="app"></div>
     <script src="//minedata.cn/minemapapi/v1.4/minemap.js"></script>
-    <script src="./dist/build.js"></script>
+    <!-- built files will be auto injected -->
   </body>
 </html>
 ```
 使用地图组件
 ```vue
 <tempalte>
-  <mine-map 
+  <div id="app">
+    <mine-map 
           :accessToken= "'e919a6f32ce242f5aec22652d9dc1fdb'"
           :solution= "'7185'"
           :options= "{
@@ -74,7 +73,8 @@ index.html
             minZoom: 3,
             maxZoom: 17,
           }"
-  ></mine-map>
+    ></mine-map>
+  </div>
 </tempalte>
 <script>
   import {MineMap} from 'vue-minemap'
@@ -82,6 +82,14 @@ index.html
     name:'app',
   }
 </script>
+<style>
+  html,body{
+    height: 100%;
+  }
+  #app{
+    height: 100%;
+  }
+</style>
 ```
 添加source和layer
 ```vue
@@ -129,7 +137,7 @@ index.html
 </script>
 ```
 
-### Props
+### 参数
 
 #### MineMap
 ##### accessToken
@@ -277,7 +285,7 @@ Default: `null`
 
 ---
 
-### Events
+### 事件
 
 #### MineMap
 ##### map-load 
