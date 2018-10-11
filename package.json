@@ -7,7 +7,9 @@
     "test": "cross-env BABEL_ENV=test karma start --single-run=false",
     "build": "rm -rf dist && cross-env NODE_ENV=production npx webpack --config webpack.config.js",
     "demo:dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.demo.js --open --hot",
-    "demo:build": "rm -rf demo/dist && cross-env NODE_ENV=production npx webpack --config webpack.demo.js"
+    "demo:build": "rm -rf demo/dist && cross-env NODE_ENV=production npx webpack --config webpack.demo.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "author": "zhuwei",
   "license": "MIT",
@@ -40,6 +42,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
     "vuedraggable": "^2.16.0",
+    "vuepress": "^0.14.4",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.9"
