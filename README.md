@@ -318,7 +318,10 @@ Parameters: `map实例`
 npm run build
 
 # 运行demo
-npm run demo
+npm run demo:dev
+
+# 打包demo
+npm run demo:build
 
 # 运行单元测试
 npm run test
