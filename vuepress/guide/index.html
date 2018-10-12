@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>指引 | vue-minemap</title>
+    <meta name="description" content="use minemap in vue">
+    <link rel="stylesheet" href="//minedata.cn/minemapapi/v1.4/minemap.css">
+  <script src="//minedata.cn/minemapapi/v1.4/minemap.js"></script>
+    
+    <link rel="preload" href="/assets/css/styles.0bad6fe9.css" as="style"><link rel="preload" href="/assets/js/app.0bad6fe9.js" as="script"><link rel="preload" href="/assets/js/12.2ffed454.js" as="script"><link rel="prefetch" href="/assets/js/4.f9f4b952.js"><link rel="prefetch" href="/assets/css/1.styles.031c20cb.css"><link rel="prefetch" href="/assets/js/1.031c20cb.js"><link rel="prefetch" href="/assets/css/2.styles.1d7faaad.css"><link rel="prefetch" href="/assets/js/2.1d7faaad.js"><link rel="prefetch" href="/assets/css/3.styles.5ba6e7a4.css"><link rel="prefetch" href="/assets/js/3.5ba6e7a4.js"><link rel="prefetch" href="/assets/css/4.styles.f9f4b952.css"><link rel="prefetch" href="/assets/css/5.styles.6141c66c.css"><link rel="prefetch" href="/assets/js/5.6141c66c.js"><link rel="prefetch" href="/assets/js/6.4a92c34b.js"><link rel="prefetch" href="/assets/js/7.6ce5051a.js"><link rel="prefetch" href="/assets/js/8.f28609ee.js"><link rel="prefetch" href="/assets/js/9.3f03159f.js"><link rel="prefetch" href="/assets/js/10.281ccab7.js"><link rel="prefetch" href="/assets/js/11.9ad283ca.js"><link rel="prefetch" href="/assets/js/13.aece190f.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.031c20cb.css"><link rel="stylesheet" href="/assets/css/2.styles.1d7faaad.css"><link rel="stylesheet" href="/assets/css/3.styles.5ba6e7a4.css"><link rel="stylesheet" href="/assets/css/4.styles.f9f4b952.css"><link rel="stylesheet" href="/assets/css/styles.0bad6fe9.css"><link rel="stylesheet" href="/assets/css/5.styles.6141c66c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">vue-minemap</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide/" class="nav-link router-link-exact-active router-link-active">指引</a></div><div class="nav-item"><a href="/api/" class="nav-link">文档</a></div><div class="nav-item"><a href="/demo/basic-map.html" class="nav-link">示例</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide/" class="nav-link router-link-exact-active router-link-active">指引</a></div><div class="nav-item"><a href="/api/" class="nav-link">文档</a></div><div class="nav-item"><a href="/demo/basic-map.html" class="nav-link">示例</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>指引</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/#安装" class="sidebar-link">安装</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/guide/#引入minemap-api" class="sidebar-link">引入minemap api</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/guide/#使用地图组件" class="sidebar-link">使用地图组件</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/guide/#添加source和layer" class="sidebar-link">添加source和layer</a><ul class="sidebar-sub-headers"></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="指引"><a href="#指引" aria-hidden="true" class="header-anchor">#</a> 指引</h1> <h2 id="安装"><a href="#安装" aria-hidden="true" class="header-anchor">#</a> 安装</h2> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">npm</span> <span class="token function">install</span> --save vue-minemap
+or
+$ yarn add vue-minemap
+</code></pre></div><h2 id="引入minemap-api"><a href="#引入minemap-api" aria-hidden="true" class="header-anchor">#</a> 引入minemap api</h2> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>en<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>utf-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>X-UA-Compatible<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>IE=edge<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>width=device-width,initial-scale=1.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!--引入 css--&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>stylesheet<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//minedata.cn/minemapapi/v1.4/minemap.css<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>vue-minemap-demo2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!--引入 js--&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//minedata.cn/minemapapi/v1.4/minemap.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- built files will be auto injected --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="使用地图组件"><a href="#使用地图组件" aria-hidden="true" class="header-anchor">#</a> 使用地图组件</h2> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tempalte</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    &lt;mine-map 
+          :accessToken= &quot;'xxxxxxxxxxxxxxxxxxxxxxxxx'&quot;
+          :solution= &quot;'xxxx'&quot;
+          :options= &quot;{
+            container: 'map',
+            style: `http://minedata.cn/service/solu/style/id/xxxx`,
+            center: [116.1866179, 39.992559],
+            zoom: 9,
+            minZoom: 3,
+            maxZoom: 17,
+          }&quot;
+    &gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mine-map</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tempalte</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+  <span class="token keyword">import</span> <span class="token punctuation">{</span>MineMap<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue-minemap'</span>
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token string">'app'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+  <span class="token selector">html,body</span><span class="token punctuation">{</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">#app</span><span class="token punctuation">{</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="添加source和layer"><a href="#添加source和layer" aria-hidden="true" class="header-anchor">#</a> 添加source和layer</h2> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tempalte</span><span class="token punctuation">&gt;</span></span>
+  &lt;mine-map 
+          :accessToken= &quot;'xxxxxxxxxxxxxxxxxxxxxxxxx'&quot;
+          :solution= &quot;'7185'&quot;
+          :options= &quot;{
+            container: 'map',
+            style: `http://minedata.cn/service/solu/style/id/xxxx`,
+            center: [116.1866179, 39.992559],
+            zoom: 9,
+            minZoom: 3,
+            maxZoom: 17,
+          }&quot;
+  &gt;
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MMSource</span> <span class="token attr-name">:id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>sourceId<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:options</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>sourceOption<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MMLayer</span> 
+        <span class="token attr-name">:id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>layerOption.id<span class="token punctuation">&quot;</span></span>
+        <span class="token attr-name">:type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>layerOption.type<span class="token punctuation">&quot;</span></span>
+        <span class="token attr-name">:paint</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>layerOption.paint<span class="token punctuation">&quot;</span></span>
+        <span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>MMLayer</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>MMSource</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mine-map</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tempalte</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+  <span class="token keyword">import</span> <span class="token punctuation">{</span>MineMap<span class="token punctuation">,</span>MMSource<span class="token punctuation">,</span>MMLayer<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue-minemap'</span>
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token string">'app'</span><span class="token punctuation">,</span>
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        sourceId<span class="token punctuation">:</span> <span class="token string">'test'</span><span class="token punctuation">,</span>
+        sourceOption<span class="token punctuation">:</span><span class="token punctuation">{</span>
+           type<span class="token punctuation">:</span> <span class="token string">'geojson'</span><span class="token punctuation">,</span>
+           data<span class="token punctuation">:</span> <span class="token punctuation">{</span>type<span class="token punctuation">:</span> <span class="token string">'Point'</span><span class="token punctuation">,</span> coordinates<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">116.1866179</span><span class="token punctuation">,</span> <span class="token number">39.992559</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        layerOption<span class="token punctuation">:</span><span class="token punctuation">{</span>
+           id<span class="token punctuation">:</span> <span class="token string">'test'</span><span class="token punctuation">,</span>
+           type<span class="token punctuation">:</span> <span class="token string">'circle'</span><span class="token punctuation">,</span>
+           paint<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">'circle-radius'</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">'circle-color'</span><span class="token punctuation">:</span> <span class="token string">'#ccc'</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/12.2ffed454.js" defer></script><script src="/assets/js/app.0bad6fe9.js" defer></script>
+  </body>
+</html>

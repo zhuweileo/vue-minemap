@@ -1,6 +1,7 @@
 module.exports = {
   title: 'vue-minemap',
   description: 'use minemap in vue',
+  dest: 'vuepress',
   head:[
     ['link',{rel: 'stylesheet',href: '//minedata.cn/minemapapi/v1.4/minemap.css'}],
     ['script',{src: '//minedata.cn/minemapapi/v1.4/minemap.js'}],
