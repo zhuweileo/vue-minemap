@@ -4,8 +4,8 @@ module.exports = {
   dest: 'vuepress',
   base:'/vue-minemap/vuepress/',
   head:[
-    ['link',{rel: 'stylesheet',href: '//minedata.cn/minemapapi/v1.4/minemap.css'}],
-    ['script',{src: '//minedata.cn/minemapapi/v1.4/minemap.js'}],
+    ['link',{rel: 'stylesheet',href: '/lib/minemap2.0/minemap.css'}],
+    ['script',{src: '/lib/minemap2.0/minemap.js'}],
   ],
   themeConfig: {
     displayAllHeaders: true,
