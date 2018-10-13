@@ -48,12 +48,12 @@ index.html
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="//minedata.cn/minemapapi/v1.4/minemap.css">
+    <link rel="stylesheet" href="//minedata.cn/minemapapi/v2.0.0/minemap.css">
     <title>vue-minemap-demo2</title>
   </head>
   <body>
     <div id="app"></div>
-    <script src="//minedata.cn/minemapapi/v1.4/minemap.js"></script>
+    <script src="//minedata.cn/minemapapi/v2.0.0/minemap.js"></script>
     <!-- built files will be auto injected -->
   </body>
 </html>

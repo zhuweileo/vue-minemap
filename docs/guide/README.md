@@ -22,13 +22,13 @@ $ yarn add vue-minemap
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--引入 css-->
-    <link rel="stylesheet" href="//minedata.cn/minemapapi/v1.4/minemap.css">
+    <link rel="stylesheet" href="//minedata.cn/minemapapi/v2.0.0/minemap.css">
     <title>vue-minemap-demo2</title>
   </head>
   <body>
     <div id="app"></div>
     <!--引入 js-->
-    <script src="//minedata.cn/minemapapi/v1.4/minemap.js"></script>
+    <script src="//minedata.cn/minemapapi/v2.0.0/minemap.js"></script>
     <!-- built files will be auto injected -->
   </body>
 </html>

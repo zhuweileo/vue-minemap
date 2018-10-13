@@ -5,8 +5,8 @@ module.exports = function (config) {
         frameworks: ['mocha','sinon-chai','chai-dom','chai',],
 
         files: [
-          {pattern: 'http://minedata.cn/minemapapi/v1.4/minemap.css',type: 'css', watched: false, included: true, served: true, nocache: false},
-          {pattern: 'http://minedata.cn/minemapapi/v1.4/minemap.js', watched: false, included: true, served: true, nocache: false},
+          {pattern: 'http://minedata.cn/minemapapi/v2.0.0/minemap.css',type: 'css', watched: false, included: true, served: true, nocache: false},
+          {pattern: 'http://minedata.cn/minemapapi/v2.0.0/minemap.js', watched: false, included: true, served: true, nocache: false},
             'test/**/*.spec.js'
         ],
 

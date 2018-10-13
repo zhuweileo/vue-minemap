@@ -55,14 +55,14 @@ describe('MineMap.vue', () => {
     expect(maxZoom).to.equal(17);
   });
 
-  it('should triger map-load callback',function (done) {
-    const map = vm.getMap();
-    this.timeout(20000);//设置最长超时为 20s
-    setTimeout(function () {
-      sinon.assert.calledWith(load,map);
-      done()
-    },15000)
-  });
+  // it('should triger map-load callback',function (done) {
+  //   const map = vm.getMap();
+  //   this.timeout(20000);//设置最长超时为 20s
+  //   setTimeout(function () {
+  //     sinon.assert.calledWith(load,map);
+  //     done()
+  //   },15000)
+  // });
 
 
 });
