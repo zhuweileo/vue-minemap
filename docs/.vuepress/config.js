@@ -22,6 +22,7 @@ module.exports = {
           children: [
             'basic-map',
             'multi-map',
+            'change-style',
           ]
         },
         {
