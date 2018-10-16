@@ -17,7 +17,8 @@ describe('MineMap.vue', () => {
         solution: '7185',
         options: {
           container: 'map',
-          style: `//minedata.cn/service/solu/style/id/7185`,
+          //提高地图的加载速度
+          style: {version:8,layers:[],sources:{}},
           center: [116.1866179, 39.992559],
           zoom: 9,
           minZoom: 3,
@@ -28,6 +29,9 @@ describe('MineMap.vue', () => {
         'map-load': load,
       },
       attachToDocument: true,
+      slots:{
+        default: '<p>map</p>'
+      }
     });
     vm = wrapper.vm;
   });
@@ -55,14 +59,25 @@ describe('MineMap.vue', () => {
     expect(maxZoom).to.equal(17);
   });
 
-  // it('should triger map-load callback',function (done) {
-  //   const map = vm.getMap();
-  //   this.timeout(20000);//设置最长超时为 20s
-  //   setTimeout(function () {
-  //     sinon.assert.calledWith(load,map);
-  //     done()
-  //   },15000)
-  // });
+  it('should triger map-load callback',function (done) {
+    const map = vm.getMap();
+    // this.timeout(20000);//设置最长超时为 20s
+    setTimeout(function () {
+      sinon.assert.calledWith(load,map);
+      done()
+    },500)
+  });
+
+  it('can change style',function () {
+    vm.$props.solution = '4287';
+    vm.$props.options.style = `//minedata.cn/service/solu/style/id/4287`;
+    expect(minemap.solution).to.equal('4287');
+  });
+
+  it('should render slots correctly',function () {
+    expect(vm.$el).to.contain.html('map</p>')
+  });
+
 
 
 });

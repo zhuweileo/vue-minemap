@@ -90,7 +90,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .vue-minemap {
     height: 100%;
   }
