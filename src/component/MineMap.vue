@@ -49,6 +49,8 @@
       this.initMap()
     },
     beforeDestroy() {
+    },
+    destroyed(){
       this.rmMap()
     },
     methods: {

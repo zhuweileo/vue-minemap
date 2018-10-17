@@ -47,6 +47,8 @@
       }
     },
     beforeDestroy() {
+    },
+    destroyed(){
       this.rmSource()
     },
     methods: {
