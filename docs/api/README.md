@@ -163,3 +163,92 @@ Parameters: `map实例`
 ```html
 <mine-map @map-load="onLoad" />
 ```
+## 方法/MineMap
+
+### getMap
+return: `map实例`
+
+```vue
+<template>
+  <div class="demo-container">
+    <MineMap ref="map" v-bind="mapProps"/>
+  </div>
+</template>
+<script >
+  export default {
+    name: 'app',
+    mounted(){
+      //可以通过该方法获取map实例
+      const map = this.$refs.map.getMap()
+    }
+  }
+</script>
+```
+
+## 方法/vue-minemap
+
+### getMap
+
+parameters: 
+- map的container 
+  - type: string
+  - required: true
+return: `map实例`
+
+```vue
+<template>
+  <div class="demo-container">
+    <MineMap v-bind="mapProps" style="flex:0 1 50%;position:relative">
+      <button class="zoom-btn" @click="zoom1">zoom</button>
+    </MineMap>
+    <MineMap v-bind="mapProps1" style="flex: 0 1 50%;position:relative">
+      <button class="zoom-btn" @click="zoom2">zoom</button>
+    </MineMap>
+  </div>
+</template>
+<script>
+  //可以从组件库中引入getMap方法
+  import {MineMap,getMap} from 'vue-minemap'
+  export default {
+    name: 'multimap',
+    data(){
+      return {
+        mapProps: {
+          accessToken: 'e919a6f32ce242f5aec22652d9dc1fdb',
+          solution: '7185',
+          options: {
+            container: 'map',
+            style: `//minedata.cn/service/solu/style/id/7185`,
+            center: [116.1866179, 39.992559],
+            zoom: 9,
+            minZoom: 3,
+            maxZoom: 17,
+          }
+        },
+        mapProps1: {
+          accessToken: 'e919a6f32ce242f5aec22652d9dc1fdb',
+          solution: '4287',
+          options: {
+            container: 'map1',
+            style: `//minedata.cn/service/solu/style/id/4287`,
+            center: [116.1866179, 39.992559],
+            zoom: 9,
+            minZoom: 3,
+            maxZoom: 17,
+          }
+        },
+      }
+    },
+    mounted(){
+      // mapProps中 options.container的值
+      const map = getMap('map');
+      const map1 = getMap('map1');
+    },
+  }
+</script>
+
+```
+::: tip
+MineMap实例上的getMap方法和vue-minemap中导出的getMap方法，都可获取到你想要的map实例，但是后者需要你传入map初始化参数中的container值，因为组件是根据该值去区分不同的MineMap组件的。
+<br>获取map实例是为了可以调用minemap的api，实现该组件没有实现的api功能。
+:::
