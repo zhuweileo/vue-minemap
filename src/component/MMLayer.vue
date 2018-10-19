@@ -4,7 +4,7 @@
 <script>
   export default {
     name: "MMLayer",
-    inject: ['sourceId','getMap'],
+    inject: ['sourceId', 'getMap'],
     props: {
       id: {
         type: String,
@@ -31,18 +31,15 @@
         default: null,
       },
     },
-    data(){
-      return {
-      }
+    data() {
+      return {}
     },
     mounted() {
       this.$parent.$on('source-load', (map) => {
-        setTimeout(() => {
-          this.map = map;
-          this.addLayer();
-        },0)
+        this.map = map;
+        this.addLayer();
       });
-      if(this.$parent.isSourceLoaded){
+      if (this.$parent.isSourceLoaded) {
         this.map = this.getMap;
         this.addLayer();
       }
@@ -61,7 +58,7 @@
         ops.forEach((op) => {
           if (this[op]) option[op] = this[op]
         });
-        if(this.sourceLayer) option['source-layer'] = this.sourceLayer;
+        if (this.sourceLayer) option['source-layer'] = this.sourceLayer;
         return option
       }
     },
@@ -85,17 +82,33 @@
       layout: {
         deep: true,
         handler(val, old) {
-          Object.keys(val).forEach((key) => {
+          if (this.$parent.isSourceLoaded) {
+            Object.keys(val).forEach((key) => {
               this.map.setLayoutProperty(this.id, key, val[key])
-          });
+            });
+          } else {
+            this.$parent.$once('source-load', (map) => {
+              Object.keys(val).forEach((key) => {
+                map.setLayoutProperty(this.id, key, val[key])
+              });
+            })
+          }
         }
       },
       paint: {
         deep: true,
         handler(val, old) {
-          Object.keys(val).forEach((key) => {
-            this.map.setPaintProperty(this.id, key, val[key])
-          });
+          if (this.$parent.isSourceLoaded) {
+            Object.keys(val).forEach((key) => {
+              this.map.setPaintProperty(this.id, key, val[key])
+            });
+          } else {
+            this.$parent.$once('source-load', (map) => {
+              Object.keys(val).forEach((key) => {
+                map.setPaintProperty(this.id, key, val[key])
+              });
+            })
+          }
         }
       },
       filter: {
