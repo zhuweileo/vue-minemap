@@ -35,10 +35,11 @@ describe('MineMap.vue', () => {
     });
     vm = wrapper.vm;
   });
-
   //测试完成后卸载组件
   afterEach(function () {
     vm.$destroy();
+    const mapCon = document.getElementById('map')
+    mapCon.parentNode.removeChild(mapCon);
   });
 
   it('should render correctly', function () {
