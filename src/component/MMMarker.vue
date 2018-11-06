@@ -54,8 +54,6 @@
         const map = this.map;
         const el = this.$slots.default[0].elm;
 
-        // console.log(this.$slots.default);
-
         const lnglat = this.lnglat;
         // const draggable = this.draggable;
         const offset = this.offset;
@@ -68,17 +66,13 @@
 
         this.marker = new minemap.Marker(el, options).setLngLat(lnglat).addTo(map);
 
-        const popup = this.$slots.popup;
-        if (popup) {
-          const popup = this.makePopup();
-          this.marker.setPopup(popup);
-        }
-      },
-      makePopup() {
-        const minemap = minemap || window.minemap;
-        const el = this.$slots.popup[0].elm;
-        // console.log(this.$slots.popup);
-        return new minemap.Popup({offset: this.offset}).setDOMContent(el)
+        //添加popup;
+        this.$children.forEach((c) => {
+          if(c.$options.name === 'MMPopup'){
+            const popup = c.popup;
+            this.marker.setPopup(popup);
+          }
+        });
       },
       rmMarker() {
         if (!this.marker) return;
