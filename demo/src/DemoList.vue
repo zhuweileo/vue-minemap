@@ -22,6 +22,11 @@
             name: '多个地图',
             path: '/multimap',
           },
+          {
+            id: 'add-marker',
+            name: '添加marker',
+            path: '/addmarker',
+          },
         ]
 
       }
@@ -32,7 +37,6 @@
 <style scoped>
   .demo-list {
     display: inline-block;
-    width: 100px;
     list-style: none;
     background: rgba(0, 0, 0, .8);
   }
