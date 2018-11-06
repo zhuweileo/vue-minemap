@@ -1,7 +1,7 @@
 <template>
   <div class="MMMarker-container" style="display: none;">
     <slot></slot>
-    <slot name="popup"></slot>
+    <slot name="content"></slot>
   </div>
 </template>
 
@@ -52,7 +52,13 @@
       addMarker() {
         const minemap = minemap || window.minemap;
         const map = this.map;
-        const el = this.$slots.default[0].elm;
+
+        let el;
+        try{
+          el = this.$slots.content[0].elm;
+        } catch (e) {
+          throw new Error('请添加一个名为content的具名slot，使其作为marker的内容，例如：<h1 slot="content">hello world</h1>');
+        }
 
         const lnglat = this.lnglat;
         // const draggable = this.draggable;
