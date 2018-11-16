@@ -27,6 +27,11 @@
             name: '添加marker',
             path: '/addmarker',
           },
+          {
+            id: 'add-popup',
+            name: '添加popup',
+            path: '/addpopup',
+          },
         ]
 
       }
