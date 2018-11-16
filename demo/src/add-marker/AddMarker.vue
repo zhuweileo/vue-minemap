@@ -2,8 +2,11 @@
   <div class="demo-container">
     <MineMap v-bind="mapProps">
       <MMMarker :id="'aaa'" :lnglat="markerLngLat" :offset="markerOffset" :anchor="'top-right'">
-        <h3 :class="markerClass" class="marker-base">你好</h3>
-        <h4 slot="popup">我是popup</h4>
+        <h3 slot="content" :class="markerClass" class="marker-base">你好</h3>
+
+        <MMPopup id="111" :offset="markerOffset">
+          <h1>我是popup</h1>
+        </MMPopup>
       </MMMarker>
 
       <button class="button" @click="onClick" >toggle</button>
@@ -14,6 +17,8 @@
 <script>
   import MineMap from '../../../src/component/MineMap'
   import MMMarker from '../../../src/component/MMMarker'
+  import MMPopup from '../../../src/component/MMPopup'
+
 
   export default {
     name: "AddMarker",
@@ -43,6 +48,7 @@
     components: {
       MineMap,
       MMMarker,
+      MMPopup,
     },
     methods: {
       onClick(){
