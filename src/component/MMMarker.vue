@@ -9,10 +9,6 @@
   export default {
     name: "MMMarker",
     props: {
-      id: {
-        type: String,
-        required: true,
-      },
       lnglat: {
         type: Array,
         required: true,
@@ -20,9 +16,9 @@
       mapInstace: {
         type: Object,
       },
-      draggable: {
-        type: Boolean,
-      },
+      // draggable: {
+      //   type: Boolean,
+      // },
       offset: {
         type: Array,
       },

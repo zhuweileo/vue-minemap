@@ -8,18 +8,11 @@
   export default {
     name: "MMPopup",
     props: {
-      id: {
-        type: String,
-        required: true,
-      },
       lnglat: {
         type: Array,
       },
       mapInstace: {
         type: Object,
-      },
-      draggable: {
-        type: Boolean,
       },
       offset: {
         type: Array,
@@ -83,7 +76,7 @@
         if(map){ this.popup.addTo(map) }
       },
       rmPopup() {
-        if (!this.marker) return;
+        if (!this.popup) return;
         this.popup.remove();
       }
     },

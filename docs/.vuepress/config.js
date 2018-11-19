@@ -32,7 +32,16 @@ module.exports = {
           children: [
             'move-layer',
           ]
-        }
+        },
+        {
+          title: '覆盖物示例',
+          collapsable: false,
+          children: [
+            'add-marker',
+            'add-popup',
+            'marker-with-popup',
+          ]
+        },
       ]
     }
 
