@@ -1,6 +1,6 @@
 {
   "name": "vue-minemap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "minemap vue component",
   "main": "dist/index.js",
   "scripts": {
