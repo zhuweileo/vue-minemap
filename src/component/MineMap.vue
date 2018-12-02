@@ -13,10 +13,12 @@
 
   function rmFromMapCenter(id) {
     let index = null;
-    mapCenter.forEach((map,i) => {
-      if(map.id === id){ index = i }
+    mapCenter.forEach((map, i) => {
+      if (map.id === id) {
+        index = i
+      }
     });
-    mapCenter.splice(index,1);
+    mapCenter.splice(index, 1);
   }
 
   export default {
@@ -50,7 +52,7 @@
     },
     beforeDestroy() {
     },
-    destroyed(){
+    destroyed() {
       this.rmMap()
     },
     methods: {
@@ -77,7 +79,7 @@
         if (this.map) {
           this.map.remove();
           this.map = null;
-          rmFromMapCenter(this.solution);
+          rmFromMapCenter(this.options.container);
         }
       },
       getMap() {
