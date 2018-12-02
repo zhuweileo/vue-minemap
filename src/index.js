@@ -1,4 +1,6 @@
 export {default as MMLayer} from './component/MMLayer'
 export {default as MMSource} from './component/MMSource'
 export {default as MineMap} from './component/MineMap'
+export {default as MMMarker} from './component/MMMarker'
+export {default as MMPopup} from './component/MMPopup'
 export {getMap} from './component/MineMap'
