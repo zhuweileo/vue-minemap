@@ -19,7 +19,7 @@ module.exports = {
       '/demo/': [
         {
           title: '地图示例',
-          collapsable: false,
+          collapsable: true,
           children: [
             'basic-map',
             'multi-map',
@@ -28,20 +28,20 @@ module.exports = {
         },
         {
           title: '图层示例',
-          collapsable: false,
+          collapsable: true,
           children: [
             'move-layer',
           ]
         },
-        // {
-        //   title: '覆盖物示例',
-        //   collapsable: false,
-        //   children: [
-        //     'add-marker',
-        //     'add-popup',
-        //     'marker-with-popup',
-        //   ]
-        // },
+        {
+          title: '覆盖物示例',
+          collapsable: true,
+          children: [
+            'add-marker',
+            'add-popup',
+            'marker-with-popup',
+          ]
+        },
       ]
     }
 
