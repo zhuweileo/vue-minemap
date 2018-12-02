@@ -40,6 +40,10 @@
       options: {
         type: Object,
         required: true,
+      },
+      urls: {
+        type: Object,
+        required: false,
       }
     },
     data() {
@@ -58,7 +62,9 @@
     methods: {
       initMap() {
         const minemap = minemap || window.minemap;
-        const {accessToken, solution, options} = this;
+        const {accessToken, solution, options,urls} = this;
+
+        if(urls) this.initParameter(minemap);
 
         minemap.accessToken = accessToken;
         minemap.solution = solution;
@@ -84,6 +90,14 @@
       },
       getMap() {
         return this.map
+      },
+      initParameter(minemap){
+        [
+          'domainUrl','dataDomainUrl',
+          'spriteUrl','serviceUrl'
+        ].forEach(p => {
+          if(this.urls[p]) minemap[p] = this.urls[p];
+        })
       }
     },
     watch: {
