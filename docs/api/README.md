@@ -167,20 +167,10 @@ marker的坐标点
 * **Required**: `false`<br>
 
 marker位置偏移<br>
-offset[0]: 相对于锚点向右偏移多少像素，
-offset[1]: 相对于锚点向下偏移多少像素
+offset[0]: 相对于左上角向右偏移多少像素，
+offset[1]: 相对于左上角向下偏移多少像素
 ```html
 <m-m-marker :offset="[50,0]"></m-m-marker>
-```
-
-### anchor
-* **Type**: `string`<br>
-* **Required**: `false`<br>
-
-marker的偏移锚点<br>
-可选值`'center' ,  'top' ,  'bottom' , 'left' ,  'right' ,  'top-left' ,  'top-right' ,  'bottom-left' , 'bottom-right'`
-```html
-<m-m-marker :anchor="'top'"></m-m-marker>
 ```
 
 ## 参数/MMPopup

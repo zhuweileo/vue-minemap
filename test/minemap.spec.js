@@ -55,7 +55,7 @@ describe('MineMap.vue', () => {
     const maxZoom = map.getMaxZoom();
 
     expect(zoom).to.equal(9);
-    expect([center.lng,center.lat]).to.eql([116.1866179, 39.992559]);
+    expect(center.toArray()).to.eql([116.1866179, 39.992559]);
     expect(minZoom).to.equal(3);
     expect(maxZoom).to.equal(17);
   });

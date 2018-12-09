@@ -1,7 +1,7 @@
 <template>
   <div class="demo-container">
     <MineMap v-bind="mapProps">
-      <MMPopup :id="'aaa'" :lnglat="popupLngLat" :offset="popupOffset" :close-button="false" :close-on-click="false">
+      <MMPopup :id="'aaa'" :lnglat="popupLngLat" :offset="popupOffset" :anchor="'top-left'" :close-button="false" :close-on-click="false">
         <h3 slot="content" :class="popupClass" class="popup-base">你好</h3>
         <!--<h1></h1>-->
       </MMPopup>

@@ -1,11 +1,10 @@
 <template>
   <div class="demo-container">
     <MineMap v-bind="mapProps">
-      <MMMarker :id="'aaa'" :lnglat="markerLngLat" :offset="markerOffset" :anchor="'top-right'">
+      <MMMarker ref="fucker"  :lnglat="markerLngLat" :anchor="'top-right'">
         <h3 slot="content" :class="markerClass" class="marker-base">你好</h3>
-
         <MMPopup id="111" :offset="markerOffset">
-          <h1>我是popup</h1>
+          <h1 slot="content">我是popup</h1>
         </MMPopup>
       </MMMarker>
 
@@ -44,6 +43,7 @@
       }
     },
     mounted() {
+      console.log(this.$refs);
     },
     components: {
       MineMap,

@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import {mount} from '@vue/test-utils'
 import MineMap from '../src/component/MineMap'
-import MMMarker from '../src/component/MMMarker'
+// import MMMarker from '../src/component/MMMarker'
 import MMPopup from '../src/component/MMPopup'
+import Syn from 'syn'
 
 function nextTick () {
   return new Promise((resolve, reject) => Vue.nextTick(resolve))
 }
 
-describe('MMMarker.vue', () => {
+describe('MMPopup.vue', () => {
   let wrapper;
   let vm;
 
@@ -16,17 +17,14 @@ describe('MMMarker.vue', () => {
     const vMap = {
       template: `
         <MineMap v-bind="mapProps">
-          <MMMarker ref="marker" v-bind="markerProps">
-            <h1 slot="content">hello world</h1>
-            <MMPopup ref="popup">
-              <h1 slot="content">我是popup</h1>
-            </MMPopup>
-          </MMMarker>
+          <MMPopup v-bind="popupProps" ref="popup">
+            <h1 slot="content">我是popup</h1>
+          </MMPopup>
         </MineMap>
       `,
       components:{
         MineMap,
-        MMMarker,
+        // MMMarker,
         MMPopup,
       },
       data(){
@@ -44,9 +42,12 @@ describe('MMMarker.vue', () => {
               maxZoom: 17,
             },
           },
-          markerProps: {
+          popupProps: {
             lnglat: [116.1866179, 39.992559],
             offset: [15,15],
+            closeButton: true,
+            closeOnClick: true,
+            anchor:'top-left',
           }
         }
       }
@@ -60,8 +61,8 @@ describe('MMMarker.vue', () => {
   it('can render correctly', function (done) {
     const map = vm.$children[0].getMap();
     map.on('load',function () {
-      expect(document.querySelector('.minemap-marker')).to.have.class('minemap-marker');
-      expect(document.querySelector('.minemap-marker')).to.contain.html('world</h1>');
+      expect(document.querySelector('.minemap-popup')).to.have.class('minemap-popup');
+      expect(document.querySelector('.minemap-popup')).to.contain.html('popup</h1>');
       done();
     })
   });
@@ -69,29 +70,40 @@ describe('MMMarker.vue', () => {
   it('init lnglat correctly',function (done) {
     const map = vm.$children[0].getMap();
     map.on('load',function () {
-      const marker = vm.$refs.marker.marker;
-      expect(marker.getLngLat().toArray()).to.eql([116.1866179, 39.992559]);
-      done()
-    })
-  });
-
-  it('init offset correctly',function (done) {
-    const map = vm.$children[0].getMap();
-    map.on('load',function () {
-      const marker = vm.$refs.marker.marker;
-      expect(marker.getOffset()).to.eql([15,15]);
-      done()
-    })
-  });
-
-  it('can set Popup',function (done) {
-    const map = vm.$children[0].getMap();
-    map.on('load',function () {
-      const marker = vm.$refs.marker.marker;
       const popup = vm.$refs.popup.popup;
-      // console.log(marker.getPopup());
-      expect(marker.getPopup()).to.equal(popup);
+      expect(popup.getLngLat().toArray()).to.eql([116.1866179, 39.992559]);
       done()
+    })
+  });
+
+  it('can set closeButton',function (done) {
+    const map = vm.$children[0].getMap();
+    map.on('load',function () {
+      // console.log(document.querySelector('.minemap-popup-close-button'));
+      expect(document.querySelector('.minemap-popup-close-button')).to.be.ok
+      done()
+    })
+  });
+
+  it('can CloseOnClick',function (done) {
+    const map = vm.$children[0].getMap();
+    map.on('load',function () {
+      const canvas = document.querySelector('.minemap-canvas')
+      // const canvas = document.querySelector('#map'); //点击map是不行的
+      // console.log(document.querySelector('.minemap-popup'))
+      expect(document.querySelector('.minemap-popup')).to.exist
+      Syn.click(canvas,function () {
+        expect(document.querySelector('.minemap-popup')).to.not.be.exist
+      });
+      done()
+    })
+  });
+
+  it('init anchor correctly', function (done) {
+    const map = vm.$children[0].getMap();
+    map.on('load',function () {
+      expect(document.querySelector('.minemap-popup')).to.have.class('minemap-popup-anchor-top-left');
+      done();
     })
   });
 

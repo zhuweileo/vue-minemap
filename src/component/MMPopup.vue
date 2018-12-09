@@ -78,6 +78,9 @@
       rmPopup() {
         if (!this.popup) return;
         this.popup.remove();
+      },
+      getPopup(){
+        return this.popup
       }
     },
     watch: {

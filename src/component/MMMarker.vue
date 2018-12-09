@@ -8,6 +8,11 @@
 <script>
   export default {
     name: "MMMarker",
+    // data(){
+    //   return {
+    //     marker: null
+    //   }
+    // },
     props: {
       lnglat: {
         type: Array,
@@ -22,9 +27,9 @@
       offset: {
         type: Array,
       },
-      anchor: {
-        type: String,
-      },
+      // anchor: {
+      //   type: String,
+      // },
     },
     mounted() {
       if (this.$parent.$options.name === 'MineMap') {
@@ -79,6 +84,9 @@
       rmMarker() {
         if (!this.marker) return;
         this.marker.remove();
+      },
+      getMarker(){
+        return this.marker;
       }
     },
     watch: {
